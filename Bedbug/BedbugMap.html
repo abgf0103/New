@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<head> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>BedbugMap</title>
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=y1lxlqdtw8"></script>
+    <script src="MarkerClustering.js"></script> <!-- 마커 클러스터 js파일 -->
+</head>
+
+<body style="overflow:hidden; margin: 0;">
+<div id="map" style="width:100%;height:100vh;">
+</div>
+</body>
+
+<script>
+var mapOptions = {
+    center: new naver.maps.LatLng(36.3595704, 127.105399),
+    zoom: 8
+};
+
+var map = new naver.maps.Map('map', mapOptions);
+
+var markers = [] //DB에서 마커 불러올때 markers.push(marker<?=$idx?>); 
+
+var marker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(37, 127.105399),
+    map: map,
+    icon: {
+        content: '<img src="img/dot.png"' +
+                 'style="opacity:0.8; margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; ' +
+                 '-webkit-user-select: none; position: absolute; width: 16px; height: 16px; left: 0px; top: 0px;">',
+        size: new naver.maps.Size(22, 35),
+        anchor: new naver.maps.Point(11, 35)
+    }
+});
+
+var marker = new naver.maps.Marker({ 
+    position: new naver.maps.LatLng(36.8188286, 127.7994947),
+    map: map,
+    icon: {
+        content: '<img src="img/dot.png"' +
+                 'style="opacity:0.8; margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; ' +
+                 '-webkit-user-select: none; position: absolute; width: 16px; height: 16px; left: 0px; top: 0px;">',
+        size: new naver.maps.Size(22, 35),
+        anchor: new naver.maps.Point(11, 35)
+    }
+});
+
+var marker = new naver.maps.Marker({ //서울쪽 마커 
+    position: new naver.maps.LatLng(37.558060, 126.961784),
+    map: map,
+    icon: { //원하는 이미지로 마커
+        content: '<img src="img/dot.png"' +
+                 'style="opacity:0.8; margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; ' +
+                 '-webkit-user-select: none; position: absolute; width: 16px; height: 16px; left: 0px; top: 0px;">',
+        size: new naver.maps.Size(22, 35),
+        anchor: new naver.maps.Point(11, 35)
+    }
+});var marker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(37.537330, 126.950600),
+    map: map,
+    icon: {
+        content: '<img src="img/dot.png"' +
+                 'style="opacity:0.8; margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; ' +
+                 '-webkit-user-select: none; position: absolute; width: 16px; height: 16px; left: 0px; top: 0px;">',
+        size: new naver.maps.Size(22, 35),
+        anchor: new naver.maps.Point(11, 35)
+    }
+});var marker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(37.495528, 127.050164),
+    map: map,
+    icon: {
+        content: '<img src="img/dot.png"' +
+                 'style="opacity:0.8; margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; ' +
+                 '-webkit-user-select: none; position: absolute; width: 16px; height: 16px; left: 0px; top: 0px;">',
+        size: new naver.maps.Size(22, 35),
+        anchor: new naver.maps.Point(11, 35)
+    }
+});
+
+var marker = new naver.maps.Marker({  //부산쪽 마커 3개
+    position: new naver.maps.LatLng(35.168594, 129.057432),
+    map: map,
+    icon: {
+        content: '<img src="img/dot.png"' +
+                 'style="opacity:0.8; margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; ' +
+                 '-webkit-user-select: none; position: absolute; width: 16px; height: 16px; left: 0px; top: 0px;">',
+        size: new naver.maps.Size(22, 35),
+        anchor: new naver.maps.Point(11, 35)
+    }
+});
+
+var marker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(35.162179, 129.049512),
+    map: map,
+    icon: {
+        content: '<img src="img/dot.png"' +
+                 'style="opacity:0.8; margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; ' +
+                 '-webkit-user-select: none; position: absolute; width: 16px; height: 16px; left: 0px; top: 0px;">',
+        size: new naver.maps.Size(22, 35),
+        anchor: new naver.maps.Point(11, 35)
+    }
+});
+
+var marker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(35.162162, 129.064495),
+    map: map,
+    icon: {
+        content: '<img src="img/dot.png"' +
+                 'style="opacity:0.8; margin: 0px; padding: 0px; border: 0px solid transparent; display: block; max-width: none; max-height: none; ' +
+                 '-webkit-user-select: none; position: absolute; width: 16px; height: 16px; left: 0px; top: 0px;">',
+        size: new naver.maps.Size(22, 35),
+        anchor: new naver.maps.Point(11, 35)
+    }
+});
+
+$(document).ready(function() { //(jquery) html파일이 모두 로드되고 나면 수행
+    var htmlMarker1 = { //분포도에 따라 색이 어두워지는 방식이고 그걸 5단계로 나눈것
+        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(https://navermaps.github.io/maps.js.ncp/docs/img/cluster-marker-1.png);background-size:contain;"></div>', //url에 원하는 이미지를 넣어서 사용가능
+        size: N.Size(40, 40),
+        anchor: N.Point(20, 20)
+    },
+    htmlMarker2 = {
+        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(https://navermaps.github.io/maps.js.ncp/docs/img/cluster-marker-2.png);background-size:contain;"></div>',
+        size: N.Size(40, 40),
+        anchor: N.Point(20, 20)
+    },
+    htmlMarker3 = {
+        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(https://navermaps.github.io/maps.js.ncp/docs/img/cluster-marker-3.png);background-size:contain;"></div>',
+        size: N.Size(40, 40),
+        anchor: N.Point(20, 20)
+    },
+    htmlMarker4 = {
+        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(https://navermaps.github.io/maps.js.ncp/docs/img/cluster-marker-4.png);background-size:contain;"></div>',
+        size: N.Size(40, 40),
+        anchor: N.Point(20, 20)
+    },
+    htmlMarker5 = {
+        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(https://navermaps.github.io/maps.js.ncp/docs/img/cluster-marker-5.png);background-size:contain;"></div>',
+        size: N.Size(40, 40),
+        anchor: N.Point(20, 20)
+    };
+
+    var markerClustering = new MarkerClustering({
+        minClusterSize: 2,
+        maxZoom: 8,
+        map: map,
+        markers: markers, //지도의 마커들을 배열로 가지고있는 변수
+        disableClickZoom: false,
+        gridSize: 120,
+        icons: [htmlMarker1, htmlMarker2, htmlMarker3, htmlMarker4, htmlMarker5],
+        indexGenerator: [10, 100, 200, 500, 1000],
+        stylingFunction: function(clusterMarker, count) {
+            $(clusterMarker.getElement()).find('div:first-child').text(count);
+        }
+    });
+});
+
+</script>
